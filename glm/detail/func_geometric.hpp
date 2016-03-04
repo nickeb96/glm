@@ -67,6 +67,30 @@ namespace glm
 		vecType<T, P> const & p0,
 		vecType<T, P> const & p1);
 
+    /// Returns the shortest distance from p0 to a plane with a normal of N and a point on the plane p1
+    ///
+    /// @tparam genType Floating-point vector types.
+    ///
+    /// @see <a href="http://www.opengl.org/sdk/docs/manglsl/xhtml/distance.xml">GLSL distance man page</a>
+    /// @see <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.pdf">GLSL 4.20.8 specification, section 8.5 Geometric Functions</a>
+    template <typename T, precision P, template <typename, precision> class vecType>
+    GLM_FUNC_DECL T distanceToPlane(
+                             vecType<T, P> const & p0,
+                             vecType<T, P> const & p1,
+                             vecType<T, P> const & N);
+
+    /// Returns the shortest distance from p0 to a line in the direction dir going through p1
+    ///
+    /// @tparam genType Floating-point vector types.
+    ///
+    /// @see <a href="http://www.opengl.org/sdk/docs/manglsl/xhtml/distance.xml">GLSL distance man page</a>
+    /// @see <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.pdf">GLSL 4.20.8 specification, section 8.5 Geometric Functions</a>
+    template <typename T, precision P, template <typename, precision> class vecType>
+    GLM_FUNC_DECL T distanceToLine(
+                             vecType<T, P> const & p0,
+                             vecType<T, P> const & p1,
+                             vecType<T, P> const & dir);
+
 	/// Returns the dot product of x and y, i.e., result = x * y.
 	///
 	/// @tparam genType Floating-point vector types.

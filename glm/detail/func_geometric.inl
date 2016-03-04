@@ -114,6 +114,34 @@ namespace detail
 		return length(p1 - p0);
 	}
 
+    template <typename T, precision P, template <typename, precision> class vecType>
+    GLM_FUNC_QUALIFIER T distanceToPlane(vecType<T, P> const & p0, vecType<T, P> const & p1, vecType<T, P> const & N)
+    {
+        vec3 temp = N * (p1 - p0);
+        
+        T dist = 0;
+        
+#ifdef GLM_FORCE_SIZE_FUNC
+        for (int i = 0; i < temp.size(); ++i)
+#else
+        for (int i = 0; i < temp.length(); ++i)
+#endif
+        {
+            dist += temp[i];
+        }
+        
+        return dist;
+    }
+
+    template <typename T, precision P, template <typename, precision> class vecType>
+    GLM_FUNC_QUALIFIER T distanceToLine(vecType<T, P> const & p0, vecType<T, P> const & p1, vecType<T, P> const & dir)
+    {
+        float b = dot(p0 - p1, dir) / dot(dir, dir);
+        vec3 pb = p1 + b * (p1 - p0);
+        
+        return distance(p0, pb);
+    }
+
 	// dot
 	template <typename T>
 	GLM_FUNC_QUALIFIER T dot(T x, T y)
